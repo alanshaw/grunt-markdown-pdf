@@ -6,19 +6,10 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
-
 module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>'
-      ]
-    },
 
     // Before generating any new files, remove any previously-created files.
     clean: {
@@ -27,6 +18,20 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     markdownpdf: {
+      all: {
+        src: "test/fixtures/**/*",
+        dest: "tmp/all"
+      },
+      some0: {
+        files: {
+          "tmp/some0": "test/fixtures/test0.md"
+        }
+      },
+      some1: {
+        files: {
+          "tmp/some1": "test/fixtures/test/*"
+        }
+      }
     },
 
     // Unit tests.
@@ -40,7 +45,6 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
@@ -48,7 +52,7 @@ module.exports = function(grunt) {
   // plugin's task(s), then test the result.
   grunt.registerTask('test', ['clean', 'markdownpdf', 'nodeunit']);
 
-  // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
-
+  // By default, run all tests.
+  grunt.registerTask('default', ['test']);
+  
 };

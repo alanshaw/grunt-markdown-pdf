@@ -1,4 +1,4 @@
-# grunt-markdown-pdf
+# grunt-markdown-pdf [![Build Status](https://travis-ci.org/alanshaw/grunt-markdown-pdf.png)](https://travis-ci.org/alanshaw/grunt-markdown-pdf) [![dependency Status](https://david-dm.org/alanshaw/grunt-markdown-pdf.png)](https://david-dm.org/alanshaw/grunt-markdown-pdf)
 
 > Grunt plugin to convert markdown documents to PDF
 
@@ -37,53 +37,45 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+#### options.phantomPath
 Type: `String`
-Default value: `',  '`
+Default value: `Path provided by phantomjs module`
 
-A string value that is used to do something with whatever.
+Path to phantom binary
 
-#### options.punctuation
+#### options.cssPath
 Type: `String`
-Default value: `'.'`
+Default value: `../pdf.css`
 
-A string value that is used to do something else with whatever else.
+Path to custom CSS file, relative to the html5bp directory
 
-### Usage Examples
+#### options.paperFormat
+Type: `String`
+Default value: `A4`
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+'A3', 'A4', 'A5', 'Legal', 'Letter' or 'Tabloid'
 
-```js
-grunt.initConfig({
-  markdownpdf: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
+#### options.paperOrientation
+Type: `String`
+Default value: `portrait`
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+'portrait' or 'landscape'
 
-```js
-grunt.initConfig({
-  markdownpdf: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
+#### options.paperBorder
+Type: `String`
+Default value: `1cm`
+
+Supported dimension units are: 'mm', 'cm', 'in', 'px'
+
+#### options.renderDelay
+Type: `Number`
+Default value: `1000`
+
+Delay in millis before rendering the PDF (give HTML and CSS a chance to load)
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+
+ * 2013-05-19   v0.0.0   Initial release

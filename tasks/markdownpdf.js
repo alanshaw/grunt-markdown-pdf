@@ -6,45 +6,69 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
+var markdownpdf = require("markdown-pdf")
+  , fs = require("fs")
+  , path = require("path")
+  , async = require("async")
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+  grunt.registerMultiTask("markdownpdf", "Convert Markdown documents to PDF", function () {
+    
+    var opts = this.options()
+      , done = this.async()
 
-  grunt.registerMultiTask('markdownpdf', 'Your task description goes here.', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
-
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
-
-      // Handle options.
-      src += options.punctuation;
-
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
-
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-    });
-  });
-
-};
+    // Create the tasks to process the targets
+    var tasks = this.files.map(function (f) {
+      
+      return function (cb) {
+        
+        var srcs = f.src.filter(function (filepath) {
+          // Warn on and remove invalid source files (if nonull was set).
+          if (!grunt.file.exists(filepath)) {
+            grunt.log.warn('Source file not found ' + filepath)
+            return false
+          }
+          if(!grunt.file.isFile(filepath)) {
+            grunt.verbose.writeln('Ignoring non file ' + filepath)
+            return false
+          }
+          grunt.verbose.writeln("Found src file: " + filepath)
+          return true
+        })
+        
+        markdownpdf(srcs, opts, function (er, pdfs) {
+          
+          // Create the tasks to move the PDFs into the correct directory
+          var tasks = pdfs.map(function (tmpPath, i) {
+            var destPath = path.join(f.dest, path.basename(srcs[i]).replace(/\.(markdown|md)/g, "") + ".pdf")
+            grunt.verbose.writeln("Determined dest path: " + destPath)
+            
+            return function (cb) {
+              grunt.verbose.writeln("Copying from " + tmpPath + " to " + destPath)
+              grunt.file.copy(tmpPath, destPath)
+              cb(null, destPath)
+            }
+          })
+          
+          async.parallel(tasks, function (er, destPaths) {
+            if (er) return cb(er)
+            cb(null, destPaths)
+          })
+        })
+      }
+    })
+    
+    async.parallel(tasks, function (er, targetDestPaths) {
+      if (er) return grunt.warn(er)
+      
+      targetDestPaths.forEach(function (destPaths) {
+        destPaths.forEach(function(destPath) {
+          grunt.log.ok(destPath)
+        })
+      })
+      
+      done()
+    })
+  })
+}
