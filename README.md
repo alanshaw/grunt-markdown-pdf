@@ -2,6 +2,10 @@
 
 > Grunt plugin to convert markdown documents to PDF
 
+Thin wrapper around [markdown-pdf](https://github.com/alanshaw/markdown-pdf).
+
+The PDF looks great because it is styled by HTML5 Boilerplate. What? - Yes! Your Markdown is first converted to HTML, then pushed into the HTML5 Boilerplate `index.html`. Phantomjs renders the page and saves it to a PDF. You can even customise the style of the PDF by passing an optional path to your CSS _and_ you can pre-process your markdown file before it is converted to a PDF by passing in a pre-processing function, for templating.
+
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
 
@@ -47,7 +51,7 @@ Path to phantom binary
 Type: `String`
 Default value: `../pdf.css`
 
-Path to custom CSS file, relative to the html5bp directory
+Path to custom CSS file, relative to the `node_modules/markdown-pdf/html5bp` directory
 
 #### options.paperFormat
 Type: `String`
@@ -72,6 +76,18 @@ Type: `Number`
 Default value: `1000`
 
 Delay in millis before rendering the PDF (give HTML and CSS a chance to load)
+
+#### options.preProcessMd
+Type: `Function`
+Default value: `null`
+
+Function to call before Markdown is converted to HTML. It is passed the Markdown file contents and _must_ return a string
+
+#### options.preProcessHtml
+Type: `Function`
+Default value: `null`
+
+Function to call after Markdown has been converted to HTML but before it is converted to PDF. It is passed the Markdown file contents and _must_ return a string
 
 ### Usage Examples
 
