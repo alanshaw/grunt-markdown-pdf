@@ -36,7 +36,10 @@
     "grunt": "~0.4.1"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "markdown",
+    "pdf",
+    "convert"
   ],
   "dependencies": {
     "markdown-pdf": "~0.1.0",
