@@ -73,6 +73,23 @@ Default value: `1000`
 
 Delay in millis before rendering the PDF (give HTML and CSS a chance to load)
 
+### Usage Examples
+
+#### Default Options
+In this example, the default options are used to convert all markdown files in the directory `src/` to PDFs in the directory `dest/`.
+
+```js
+grunt.initConfig({
+  markdownpdf: {
+    options: {},
+    files: {
+      src: "src/*.md"
+      dest: "dest"
+    }
+  }
+})
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
