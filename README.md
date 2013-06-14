@@ -117,4 +117,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+ * 2013-06-14   v0.3.0   Use marked module for better markdown compatibility and performance
+ * 2013-05-30   v0.2.0   Allow concatenation of multiple source files to produce a single PDF
+ * 2013-05-19   v0.1.0   Callback hooks allowing markdown (and html) content to be pre-processed
  * 2013-05-19   v0.0.0   Initial release
