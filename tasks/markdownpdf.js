@@ -39,6 +39,9 @@ module.exports = function (grunt) {
         
         markdownpdf(srcs, opts, function (er, pdfs) {
           
+          // markdownpdf may return a single file path as a string if only 1 PDF is created
+          pdfs = Array.isArray(pdfs) ? pdfs : [pdfs]
+          
           // Create the tasks to move the PDFs into the correct directory
           var tasks = pdfs.map(function (tmpPath, i) {
             var destPath = path.join(f.dest, path.basename(srcs[i]).replace(/\.(markdown|md)/g, "") + ".pdf")
