@@ -28,8 +28,8 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt-contrib-clean": "~0.4.1",
-    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
     "grunt": "~0.4.1"
   },
   "peerDependencies": {
@@ -43,7 +43,7 @@
     "template"
   ],
   "dependencies": {
-    "markdown-pdf": "~1.0.0",
+    "markdown-pdf": "~1.1.0",
     "async": "~0.2.8"
   }
 }
