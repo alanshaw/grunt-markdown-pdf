@@ -55,9 +55,9 @@ If set to true, a single PDF will be created containing the contents of all of t
 
 #### options.cssPath
 Type: `String`
-Default value: `../pdf.css`
+Default value: `node_modules/markdown-pdf/pdf.css`
 
-Path to custom CSS file, relative to the `node_modules/markdown-pdf/html5bp` directory
+Path to custom CSS file, relative to the current working directory.
 
 #### options.paperFormat
 Type: `String`
@@ -117,6 +117,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+ * 2013-09-04   v1.0.0   Use updated markdown-pdf module - CSS path is now relative to current working directory
  * 2013-06-14   v0.3.0   Use marked module for better markdown compatibility and performance
  * 2013-05-30   v0.2.0   Allow concatenation of multiple source files to produce a single PDF
  * 2013-05-19   v0.1.0   Callback hooks allowing markdown (and html) content to be pre-processed
