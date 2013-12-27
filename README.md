@@ -47,7 +47,7 @@ Default value: `Path provided by phantomjs module`
 
 Path to phantom binary
 
-#### options.concatFiles
+#### options.concat
 Type: `Boolean`
 Default value: `false`
 
@@ -117,6 +117,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+ * 2013-12-27   v2.0.0   Use updated (streaming) markdown-pdf module and implement concat files properly
  * 2013-09-04   v1.0.0   Use updated markdown-pdf module - CSS path is now relative to current working directory
  * 2013-06-14   v0.3.0   Use marked module for better markdown compatibility and performance
  * 2013-05-30   v0.2.0   Allow concatenation of multiple source files to produce a single PDF

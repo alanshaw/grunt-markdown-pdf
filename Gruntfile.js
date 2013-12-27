@@ -31,6 +31,11 @@ module.exports = function(grunt) {
         files: {
           "tmp/some1": "test/fixtures/test/*"
         }
+      },
+      concat: {
+        options: {concat: true},
+        src: "test/fixtures/**/*",
+        dest: "tmp/concatenated.pdf"
       }
     },
 
@@ -54,5 +59,5 @@ module.exports = function(grunt) {
 
   // By default, run all tests.
   grunt.registerTask('default', ['test'])
-  
+
 }

@@ -7,7 +7,6 @@
  */
 
 var markdownpdf = require("markdown-pdf")
-
   , path = require("path")
   , async = require("async")
 
@@ -37,16 +36,26 @@ module.exports = function (grunt) {
           return true
         })
 
-        var dests = srcs.map(function (src) {
-          var destPath = path.join(f.dest, path.basename(src).replace(/\.(markdown|md)/g, "") + ".pdf")
-          grunt.verbose.writeln("Determined dest path: " + destPath)
-          return destPath
-        })
+        if (opts.concat) {
 
-        markdownpdf(opts).from(srcs).to(dests, function (er) {
-          if (er) return cb(er)
-          cb(null, dests)
-        })
+          markdownpdf(opts).concat.from(srcs).to(f.dest, function (er) {
+            if (er) return cb(er)
+            cb(null, [f.dest])
+          })
+
+        } else {
+
+          var dests = srcs.map(function (src) {
+            var destPath = path.join(f.dest, path.basename(src).replace(/\.(markdown|md)/g, "") + ".pdf")
+            grunt.verbose.writeln("Determined dest path: " + destPath)
+            return destPath
+          })
+
+          markdownpdf(opts).from(srcs).to(dests, function (er) {
+            if (er) return cb(er)
+            cb(null, dests)
+          })
+        }
       }
     })
 
