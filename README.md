@@ -112,7 +112,7 @@ grunt.initConfig({
 })
 ```
 
-### Replace characters with preProcessMd
+#### Replace characters with preProcessMd
 In this example we use a through stream called [split](https://npmjs.org/package/split) to split the markdown file into lines and replace `foo` with `bar`.
 
 ```js
