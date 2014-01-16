@@ -85,15 +85,15 @@ Delay in millis before rendering the PDF (give HTML and CSS a chance to load)
 
 #### options.preProcessMd
 Type: `Function`
-Default value: `null`
+Default value: `function () { return through() }`
 
-Function to call before Markdown is converted to HTML. It is passed the Markdown file contents and _must_ return a string
+A function that returns a [through stream](https://npmjs.org/package/through) that transforms the markdown before it is converted to HTML.
 
 #### options.preProcessHtml
 Type: `Function`
-Default value: `null`
+Default value: `function () { return through() }`
 
-Function to call after Markdown has been converted to HTML but before it is converted to PDF. It is passed the Markdown file contents and _must_ return a string
+A function that returns a [through stream](https://npmjs.org/package/through) that transforms the HTML before it is converted to markdown.
 
 ### Usage Examples
 
@@ -112,11 +112,33 @@ grunt.initConfig({
 })
 ```
 
+### Replace characters with preProcessMd
+In this example we use a through stream called [split](https://npmjs.org/package/split) to split the markdown file into lines and replace `foo` with `bar`.
+
+```js
+var split = require("split")
+
+grunt.initConfig({
+  markdownpdf: {
+    dist: {
+      options: {
+        preProcessMd: function () {
+          return split(function (line) {
+            return line.replace("foo", "bar") + "\n"
+          })
+        }
+      },
+      src: "document.md",
+      dest: "dist/"
+    }
+  }
+})
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-
  * 2013-12-27   v2.0.0   Use updated (streaming) markdown-pdf module and implement concat files properly
  * 2013-09-04   v1.0.0   Use updated markdown-pdf module - CSS path is now relative to current working directory
  * 2013-06-14   v0.3.0   Use marked module for better markdown compatibility and performance
