@@ -1,7 +1,7 @@
 {
   "name": "grunt-markdown-pdf",
   "description": "Grunt plugin to convert Markdown documents to PDF",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "homepage": "https://github.com/alanshaw/grunt-markdown-pdf",
   "author": {
     "name": "Alan Shaw",
