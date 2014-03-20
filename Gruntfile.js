@@ -36,6 +36,11 @@ module.exports = function(grunt) {
         options: {concat: true},
         src: "test/fixtures/**/*",
         dest: "tmp/concatenated.pdf"
+      },
+      filename: {
+        src: "test/fixtures/test0.md",
+        dest: "tmp",
+        filename: "custom"
       }
     },
 
