@@ -112,6 +112,22 @@ grunt.initConfig({
 })
 ```
 
+#### Custom PDF name
+This example, adds a `filename` parameter to generate a custom PDF filename. In this case `dest/custom.pdf` will be generated.
+
+```js
+grunt.initConfig({
+  markdownpdf: {
+    options: {},
+    files: {
+      src: "src/*.md",
+      dest: "dest",
+      filename: "custom"
+    }
+  }
+})
+```
+
 #### Replace characters with preProcessMd
 In this example we use a through stream called [split](https://npmjs.org/package/split) to split the markdown file into lines and replace `foo` with `bar`.
 
