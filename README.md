@@ -113,7 +113,7 @@ grunt.initConfig({
 ```
 
 #### Custom PDF name
-This example, adds a `filename` parameter to generate a custom PDF filename. In this case `dest/custom.pdf` will be generated.
+This example adds a `filename` parameter to generate a custom PDF filename. In this case `dest/custom.pdf` will be generated.
 
 ```js
 grunt.initConfig({
