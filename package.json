@@ -28,12 +28,12 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.1"
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt": "~0.4.5"
   },
   "peerDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.5"
   },
   "keywords": [
     "gruntplugin",
@@ -43,7 +43,7 @@
     "template"
   ],
   "dependencies": {
-    "markdown-pdf": "~2.1.0",
-    "async": "~0.2.8"
+    "markdown-pdf": "~5.2.0",
+    "async": "~0.9.0"
   }
 }
