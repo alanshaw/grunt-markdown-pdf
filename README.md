@@ -41,59 +41,95 @@ grunt.initConfig({
 
 ### Options
 
-#### options.phantomPath
-Type: `String`
-Default value: `Path provided by phantomjs module`
-
-Path to phantom binary
-
 #### options.concat
 Type: `Boolean`
 Default value: `false`
 
 If set to true, a single PDF will be created containing the contents of all of the Markdown files.
 
-#### options.cssPath
-Type: `String`
-Default value: `node_modules/markdown-pdf/pdf.css`
+#### options.cwd
+Type: `String`  
+Default value: `process.cwd()`
 
-Path to custom CSS file, relative to the current working directory.
+Current working directory.
+
+#### options.phantomPath
+Type: `String`  
+Default value: Path provided by phantomjs module
+
+Path to the phantomjs binary.
+
+#### options.cssPath
+Type: `String`  
+Default value: `[module path]/markdown-pdf/css/pdf.css`
+
+Path to custom CSS file, relative to the current directory.
+
+#### options.highlightCssPath
+Type: `String`  
+Default value: `[module path]/markdown-pdf/css/highlight.css`
+
+Path to custom highlight CSS file (for code highlighting with [highlight.js](https://highlightjs.org)), relative to the current directory.
 
 #### options.paperFormat
-Type: `String`
+Type: `String`  
 Default value: `A4`
 
-'A3', 'A4', 'A5', 'Legal', 'Letter' or 'Tabloid'
+'A3', 'A4', 'A5', 'Legal', 'Letter' or 'Tabloid'.
 
 #### options.paperOrientation
-Type: `String`
+Type: `String`  
 Default value: `portrait`
 
-'portrait' or 'landscape'
+'portrait' or 'landscape'.
 
 #### options.paperBorder
-Type: `String`
+Type: `String`  
 Default value: `1cm`
 
 Supported dimension units are: 'mm', 'cm', 'in', 'px'
 
-#### options.renderDelay
-Type: `Number`
-Default value: `1000`
+#### options.runningsPath
+Type: `String`  
+Default value: `runnings.js`
 
-Delay in millis before rendering the PDF (give HTML and CSS a chance to load)
+Path to CommonJS module which sets the page header and footer (see [runnings.js](runnings.js)).
+
+#### options.renderDelay
+Type: `Number`  
+Default value: Time until [`page.onLoadFinished`](http://phantomjs.org/api/webpage/handler/on-load-finished.html) event fired
+
+Delay (in ms) before the PDF is rendered.
+
+#### options.loadTimeout
+Type: `Number`  
+Default value: `10000`
+
+If `renderDelay` option isn't set, this is the timeout (in ms) before the page is rendered in case the `page.onLoadFinished` event doesn't fire.
 
 #### options.preProcessMd
-Type: `Function`
+Type: `Function`  
 Default value: `function () { return through() }`
 
-A function that returns a [through stream](https://npmjs.org/package/through) that transforms the markdown before it is converted to HTML.
+A function that returns a [through2 stream](https://npmjs.org/package/through2) that transforms the markdown before it is converted to HTML.
 
 #### options.preProcessHtml
-Type: `Function`
+Type: `Function`  
 Default value: `function () { return through() }`
 
-A function that returns a [through stream](https://npmjs.org/package/through) that transforms the HTML before it is converted to markdown.
+A function that returns a [through2 stream](https://npmjs.org/package/through2) that transforms the HTML before it is converted to PDF.
+
+#### options.remarkable
+Type: `object`  
+Default value: `{}`
+
+A config object that is passed to [remarkable](https://www.npmjs.com/package/remarkable#options), the underlying markdown parser.
+
+##### options.remarkable.plugins
+Type: `Array` of remarkable-plugin `Function`s  
+Default value: `[]`
+
+An array of Remarkable plugin functions, that extend the markdown parser functionality.
 
 ### Usage Examples
 
@@ -139,6 +175,7 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+ * 2015-04-26   v3.0.0   Use updated markdown-pdf module
  * 2013-12-27   v2.0.0   Use updated (streaming) markdown-pdf module and implement concat files properly
  * 2013-09-04   v1.0.0   Use updated markdown-pdf module - CSS path is now relative to current working directory
  * 2013-06-14   v0.3.0   Use marked module for better markdown compatibility and performance
