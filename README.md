@@ -1,4 +1,4 @@
-# grunt-markdown-pdf [![Build Status](https://travis-ci.org/alanshaw/grunt-markdown-pdf.png)](https://travis-ci.org/alanshaw/grunt-markdown-pdf) [![dependency Status](https://david-dm.org/alanshaw/grunt-markdown-pdf.png)](https://david-dm.org/alanshaw/grunt-markdown-pdf)
+# grunt-markdown-pdf [![Build Status](https://travis-ci.org/alanshaw/grunt-markdown-pdf.svg)](https://travis-ci.org/alanshaw/grunt-markdown-pdf) [![dependency Status](https://david-dm.org/alanshaw/grunt-markdown-pdf.svg)](https://david-dm.org/alanshaw/grunt-markdown-pdf)
 
 > Grunt plugin to convert markdown documents to PDF
 
