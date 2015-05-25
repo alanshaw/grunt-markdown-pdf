@@ -93,7 +93,7 @@ Supported dimension units are: 'mm', 'cm', 'in', 'px'
 Type: `String`  
 Default value: `runnings.js`
 
-Path to CommonJS module which sets the page header and footer (see [runnings.js](runnings.js)).
+Path to CommonJS module which sets the page header and footer (see [runnings.js](https://github.com/alanshaw/markdown-pdf/blob/master/runnings.js)).
 
 #### options.renderDelay
 Type: `Number`  
