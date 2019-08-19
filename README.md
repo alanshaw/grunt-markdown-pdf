@@ -175,6 +175,7 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+ * 2019-08-19   v4.0.0   Update dependencies
  * 2015-04-26   v3.0.0   Use updated markdown-pdf module
  * 2013-12-27   v2.0.0   Use updated (streaming) markdown-pdf module and implement concat files properly
  * 2013-09-04   v1.0.0   Use updated markdown-pdf module - CSS path is now relative to current working directory
