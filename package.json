@@ -43,7 +43,7 @@
     "template"
   ],
   "dependencies": {
-    "markdown-pdf": "~5.2.0",
+    "markdown-pdf": "~9.0.0",
     "async": "~0.9.0"
   }
 }
