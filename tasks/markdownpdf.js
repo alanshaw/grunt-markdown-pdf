@@ -8,7 +8,7 @@
 
 var markdownpdf = require("markdown-pdf")
   , path = require("path")
-  , async = require("async")
+  , parallel = require("async/parallel")
 
 module.exports = function (grunt) {
 
@@ -59,7 +59,7 @@ module.exports = function (grunt) {
       }
     })
 
-    async.parallel(tasks, function (er, targetDestPaths) {
+    parallel(tasks, function (er, targetDestPaths) {
       if (er) return grunt.warn(er)
 
       targetDestPaths.forEach(function (destPaths) {
