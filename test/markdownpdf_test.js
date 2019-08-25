@@ -40,5 +40,14 @@ exports.markdownpdf = {
     test.ok(contents.length > 0)
 
     test.done()
+  },
+  filename: function(test) {
+    test.expect(1)
+
+    var contents = grunt.file.read('tmp/custom.pdf')
+
+    test.ok(contents.length > 0)
+
+    test.done()
   }
 }

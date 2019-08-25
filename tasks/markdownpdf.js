@@ -46,7 +46,8 @@ module.exports = function (grunt) {
         } else {
 
           var dests = srcs.map(function (src) {
-            var destPath = path.join(f.dest, path.basename(src).replace(/\.(markdown|md)/g, "") + ".pdf")
+            var filename = f.filename || path.basename(src).replace(/\.(markdown|md)/g, "")
+            var destPath = path.join(f.dest, filename + ".pdf")
             grunt.verbose.writeln("Determined dest path: " + destPath)
             return destPath
           })
